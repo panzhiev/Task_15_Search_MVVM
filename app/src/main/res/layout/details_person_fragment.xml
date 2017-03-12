@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="person"
+            type="com.tim.task_15_search_mvvm.model.Person"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/details_person_fragment"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/text_view_details_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{person.name}"
+            android:layout_margin="1dp"/>
+        <TextView
+            android:id="@+id/text_view_details_surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{person.surname}"
+            android:layout_below="@id/text_view_details_name"
+            android:layout_margin="1dp"/>
+        <TextView
+            android:id="@+id/text_view_details_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{person.phoneNumber}"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="1dp"/>
+        <TextView
+            android:id="@+id/text_view_details_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{person.mail}"
+            android:layout_below="@id/text_view_details_phone"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="1dp"/>
+        <TextView
+            android:id="@+id/text_view_details_skype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{person.skype}"
+            android:layout_below="@id/text_view_details_mail"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="1dp"/>
+
+    </RelativeLayout>
+
+</layout>
