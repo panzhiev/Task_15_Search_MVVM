@@ -23,25 +23,20 @@ public class DetailsPerson extends Fragment {
 
     DetailsPersonFragmentBinding detailsPersonFragmentBinding;
     AdapterSharedPreferences adapterSharedPreferences;
-    Person mPerson;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.detailsPersonFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.details_person_fragment, container, false);
 
-//        int idPerson = getArguments().getInt("IdPersonToDetailActivity");
-//        adapterSharedPreferences = new AdapterSharedPreferences();
-//        Person person = adapterSharedPreferences.getPersonById(getContext(), String.valueOf(idPerson));
-        detailsPersonFragmentBinding.setPerson(mPerson);
+        int idPerson = getArguments().getInt("IdPersonToDetailActivity", 0);
+        adapterSharedPreferences = new AdapterSharedPreferences();
+        Person person = adapterSharedPreferences.getPersonById(getContext(), idPerson);
+
+        detailsPersonFragmentBinding.setPerson(person);
 
         View view = detailsPersonFragmentBinding.getRoot();
         return view;
-    }
-
-    public void setPerson(Person person)
-    {
-        this.mPerson = person;
     }
 
     public static DetailsPerson newInstance() {

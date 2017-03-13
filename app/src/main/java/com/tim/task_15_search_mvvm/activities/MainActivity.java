@@ -2,6 +2,7 @@ package com.tim.task_15_search_mvvm.activities;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private static final String[] PHONE_NUMBER = new String [] {"0993414821", "0667077979", "0974995005", "0933988237", "0932007592", "0631365815", "0938375507", "0679999977"};
     private static final String[] MAIL = new String [] {"kalashnyk.denys@gmail.com", "stanislavshido@gmail.com", "v.a.d.i.k@mail.ru", "eugene.kovalev@me.com", "merezhkosasha@gmail.com", "ekar89@mail.ru", "thesergeyrudenko@gmail.com", "alexey.grinyuk@gmail.com"};
     private static final String[] SKYPE = new String [] {"denis_ka27", "shido_s", "hotun.vadim", "kovalev_eugene", "sasha_merezhko", "vladislavpom", "sergey_rudenko_84", "greenya1"};
+    private static final String[] PROFILE_PHOTO = new String [] {"http://100grp.ru/wp-content/uploads/2011/09/0192-150x150.jpg",
+            "http://100grp.ru/wp-content/uploads/2011/09/0191-150x150.jpg",
+            "http://100grp.ru/wp-content/uploads/2011/09/0190-150x150.jpg",
+            "http://100grp.ru/wp-content/uploads/2011/09/0189-150x150.jpg",
+            "http://100grp.ru/wp-content/uploads/2011/09/0188-150x150.jpg",
+            "http://100grp.ru/wp-content/uploads/2011/09/0187-150x150.jpg",
+            "http://100grp.ru/wp-content/uploads/2011/09/0186-150x150.jpg",
+            "http://100grp.ru/wp-content/uploads/2011/09/0185-150x150.jpg"};
 
     private static final Comparator<Person> ALPHABETICAL_COMPARATOR = new Comparator<Person>() {
         @Override
@@ -53,21 +62,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         mAdapter = new MyAdapter(this, ALPHABETICAL_COMPARATOR, new MyAdapter.Listener() {
             @Override
             public void onPersonModelClicked(Person person) {
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("IdPersonToDetailActivity", (int) person.getId());
-//                fragment.setArguments(bundle);
-
+                Bundle bundle = new Bundle();
+                bundle.putInt("IdPersonToDetailActivity", (int) person.getId());
                 DetailsPerson fragment = DetailsPerson.newInstance();
-                fragment.setPerson(person);
+                fragment.setArguments(bundle);
+//                fragment.setPerson(person);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, fragment)
                         .addToBackStack(null);
                 fragmentTransaction.commit();
                 mBinding.recyclerView.setVisibility(View.GONE);
 
-//                itemPersonBinding.setPerson(person);
-//                final String name = getString(R.string.model_clicked_pattern, person.getName());
-//                Snackbar.make(mBinding.getRoot(), name, Snackbar.LENGTH_SHORT).show();
+                final String name = getString(R.string.model_clicked_pattern, person.getName());
+                Snackbar.make(mBinding.getRoot(), name, Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
 //        mModels = new ArrayList<>();
         for (int i = 0, count = NAME.length; i < count; i++) {
-            adapterSharedPreferences.addPerson(this, new Person(i, NAME[i], SURNAME[i], PHONE_NUMBER[i], MAIL[i], SKYPE[i]));
+            adapterSharedPreferences.addPerson(this, new Person(i, NAME[i], SURNAME[i], PHONE_NUMBER[i], MAIL[i], SKYPE[i], PROFILE_PHOTO[i]));
         }
         mAdapter.edit()
                 .replaceAll(adapterSharedPreferences.getPersons(this))

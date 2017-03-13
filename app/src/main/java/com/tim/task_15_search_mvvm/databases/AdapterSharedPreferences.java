@@ -86,17 +86,17 @@ public class AdapterSharedPreferences {
         }
         savePerson(context, personList);
     }
-    public  Person getPersonById(Context mContext, String id ) {
+
+    public  Person getPersonById(Context mContext, long id ) {
 
         AbstractList<Person> persons = getPersons(mContext);
 
         for (Person person : persons) {
 
-            if (String.valueOf(person.getId()).equals(id)) return person;
+            if (person.getId() == id) return person;
         }
         return null;
     }
-
 
 //    public void updatePerson(Context context, Person newPerson){
 //        ArrayList<Person> personList = getPersons(context);

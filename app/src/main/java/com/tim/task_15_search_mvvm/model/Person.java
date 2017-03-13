@@ -14,14 +14,16 @@ public class Person implements SortedListAdapter.ViewModel{
     private final String mPhoneNumber;
     private final String mMail;
     private final String mSkype;
+    private final String mProfilePhoto;
 
-    public Person (long id, String name, String surname, String phoneNumber, String mail, String skype) {
+    public Person (long id, String name, String surname, String phoneNumber, String mail, String skype, String profilePhoto) {
         mId = id;
         mName = name;
         mSurname = surname;
         mPhoneNumber = phoneNumber;
         mMail = mail;
         mSkype = skype;
+        mProfilePhoto = profilePhoto;
     }
 
     public long getId() {return mId;}
@@ -36,6 +38,10 @@ public class Person implements SortedListAdapter.ViewModel{
 
     public String getSkype() {return mSkype;}
 
+    public String getProfilePhoto() {
+        return mProfilePhoto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,7 +54,8 @@ public class Person implements SortedListAdapter.ViewModel{
                 mSurname != null ? mSurname.equals(person.mSurname) : person.mSurname == null ||
                 mPhoneNumber != null ? mPhoneNumber.equals(person.mPhoneNumber) : person.mPhoneNumber == null ||
                 mMail != null ?mMail.equals(person.mMail) : person.mMail == null ||
-                mSkype != null ? mSkype.equals(person.mSkype) : person.mSkype == null;
+                mSkype != null ? mSkype.equals(person.mSkype) : person.mSkype == null ||
+                mProfilePhoto != null ? mProfilePhoto.equals(person.mProfilePhoto) : person.mProfilePhoto == null;
 
     }
 
@@ -60,6 +67,7 @@ public class Person implements SortedListAdapter.ViewModel{
         result = 31 * result + (mPhoneNumber != null ? mPhoneNumber.hashCode() : 0);
         result = 31 * result + (mMail != null ? mMail.hashCode() : 0);
         result = 31 * result + (mSkype != null ? mSkype.hashCode() : 0);
+        result = 31 * result + (mProfilePhoto != null ? mProfilePhoto.hashCode() : 0);
         return result;
     }
 }
