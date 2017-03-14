@@ -18,7 +18,7 @@ import java.util.List;
 public class AdapterSharedPreferences {
 
     public static final String PREFS_NAME = "CRUD_APP";
-    public static final String PERSON_CONSTANT = "Person Constant";
+    public static final String PERSON_CONSTANT = "Person Constant1";
 
     public AdapterSharedPreferences() {
         super();

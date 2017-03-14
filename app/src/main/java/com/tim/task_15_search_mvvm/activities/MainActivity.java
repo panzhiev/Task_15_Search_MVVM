@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         mAdapter = new MyAdapter(this, ALPHABETICAL_COMPARATOR, new MyAdapter.Listener() {
             @Override
             public void onPersonModelClicked(Person person) {
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("IdPersonToDetailActivity", (int) person.getId());
+                Bundle bundle = new Bundle();
+                bundle.putInt("IdPersonToDetailActivity", (int) person.getId());
                 DetailsPerson fragment = DetailsPerson.newInstance();
-//                fragment.setArguments(bundle);
-                fragment.setPerson(person);
+                fragment.setArguments(bundle);
+//                fragment.setPerson(person);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, fragment)
                         .addToBackStack(null);
