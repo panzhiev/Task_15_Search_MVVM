@@ -15,7 +15,7 @@ public final class BindingAdapter {
         throw new AssertionError();
     }
 
-    @android.databinding.BindingAdapter({"android:src"})
+    @android.databinding.BindingAdapter("android:src")
     public static void loadImage(ImageView view, String url) {
         Picasso.with(view.getContext())
                 .load(url)

@@ -16,7 +16,6 @@ import com.tim.task_15_search_mvvm.R;
 import com.tim.task_15_search_mvvm.adapter.MyAdapter;
 import com.tim.task_15_search_mvvm.databases.AdapterSharedPreferences;
 import com.tim.task_15_search_mvvm.databinding.ActivityMainBinding;
-import com.tim.task_15_search_mvvm.databinding.ItemPersonBinding;
 import com.tim.task_15_search_mvvm.fragments.DetailsPerson;
 import com.tim.task_15_search_mvvm.model.Person;
 
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private MyAdapter mAdapter;
     AdapterSharedPreferences adapterSharedPreferences = new AdapterSharedPreferences();
     private ActivityMainBinding mBinding;
-    private ItemPersonBinding itemPersonBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +60,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         mAdapter = new MyAdapter(this, ALPHABETICAL_COMPARATOR, new MyAdapter.Listener() {
             @Override
             public void onPersonModelClicked(Person person) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("IdPersonToDetailActivity", (int) person.getId());
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("IdPersonToDetailActivity", (int) person.getId());
                 DetailsPerson fragment = DetailsPerson.newInstance();
-                fragment.setArguments(bundle);
-//                fragment.setPerson(person);
+//                fragment.setArguments(bundle);
+                fragment.setPerson(person);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, fragment)
                         .addToBackStack(null);
                 fragmentTransaction.commit();
-                mBinding.recyclerView.setVisibility(View.GONE);
 
+                mBinding.recyclerView.setVisibility(View.GONE);
                 final String name = getString(R.string.model_clicked_pattern, person.getName());
                 Snackbar.make(mBinding.getRoot(), name, Snackbar.LENGTH_SHORT).show();
             }
